@@ -1,0 +1,27 @@
+<!doctype html>
+
+<html lang="ja">
+    <head>
+        <meta http-equiv="content-type" content="text/html"; charset="utf-8">
+        <link rel="stylesheet" href="./oreda.css">
+    </head>
+
+    <body>
+        <div id="app">
+            <h1>爆速タイピング！俺打！</h1>
+            <input type="button" value="start" v-on:click="makeOdai(); timerStart(); onclickFocus()">
+            <h3 >タイマー：　{{time}}</h3> <h3>1秒間の平均タイプ数: {{ typePerMin }}</h3>
+            <a>ポイント：  </a>    <p>{{ point }} </p>
+
+            <span class="odai" v-for="i of 13"> <!-- v-for"i of 13" は 1から13までで今回欲しいのは0から12まで　なのでi-1としている -->
+                <span  v-if="key[i-1] === odai[i-1]" class="correctodai">{{ odai[i-1] }}</span>
+                <span v-else class="incorrectodai">{{ odai[i-1] }}</span>
+            </span><br>
+            
+            <input id="typingarea" type="text" @input="onChangeKey(); checkType()" v-model="key">
+
+        </div>
+        <script src="./vue.js"></script>
+        <script src="./oreda_vue.js"></script>
+    </body>
+</html>
